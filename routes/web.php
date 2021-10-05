@@ -50,3 +50,19 @@ Route::get('/products/about', [ProductsController::class, 'about']);
 Route::get('/products', 'App\Http\Controllers\ProductsController@index');
 // Before Laravel 8 (not working)
 // Route::get('/products', 'ProductsController@index');
+
+
+// ROUTE PARAMETERS
+// /products = all products
+// /products/productName
+// /products/id
+
+// Route::get('products/{name}', [ProductsController::class, 'show']);
+
+// Pattern is integer
+// [0-9] : 0 to 9
+// [0-9]+
+// Route::get('products/{id}', [ProductsController::class, 'show'])->where('id', '[0-9]+');
+
+// Pattern is string
+Route::get('products/{name}', [ProductsController::class, 'show'])->where('name', '[a-zA-z]+');
