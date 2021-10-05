@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\PagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,9 @@ use App\Http\Controllers\ProductsController;
 */
 
 // Route that send back a view
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 // Route to users - string
 Route::get('/users', function () {
@@ -69,3 +70,8 @@ Route::get('products/{name}', [ProductsController::class, 'show'])->where('name'
 
 // Named Route
 Route::get('/namedRoute', [ProductsController::class, 'namedRoute'])->name('products');
+
+
+// add view
+Route::get('/', [PagesController::class, 'index']);
+Route::get('/about', [PagesController::class, 'about']);
