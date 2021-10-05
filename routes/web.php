@@ -13,11 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route that send back a view
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Route to user
+// Route to users - string
 Route::get('/users', function () {
     return "Hello";
+});
+
+// Route to users - array [Json]
+Route::get('/users', function () {
+    return ['PHP', 'Htmls', 'Laravel'];
+});
+
+// Route to users - JSON object
+Route::get('/users', function () {
+    return response()->json([
+            'name' => 'Khailq',
+        'course' => 'Laravel Beginer',
+    ]);
+});
+
+// Route to users - function
+Route::get('/users', function () {
+    return redirect('/');
 });
