@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route that send back a view
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 // Route to users - string
