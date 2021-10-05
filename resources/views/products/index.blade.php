@@ -14,6 +14,6 @@
         <p>{{ $item }}</p>
     @endforeach --}}
 
-    <p>{{ $product }}</p>
+    {{-- <p>{{ $product }}</p> --}}
 </body>
 </html>

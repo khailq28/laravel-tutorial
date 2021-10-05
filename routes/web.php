@@ -66,3 +66,6 @@ Route::get('/products', 'App\Http\Controllers\ProductsController@index');
 
 // Pattern is string
 Route::get('products/{name}', [ProductsController::class, 'show'])->where('name', '[a-zA-z]+');
+
+// Named Route
+Route::get('/namedRoute', [ProductsController::class, 'namedRoute'])->name('products');

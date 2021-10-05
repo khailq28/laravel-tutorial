@@ -40,4 +40,9 @@ class ProductsController extends Controller
             'product' => $data[$name] ?? 'Product ' . $name . " does not exist."
         ]);
     }
+
+    public function namedRoute() {
+        print_r(route('products'));
+        return view('products.index');
+    }
 }
