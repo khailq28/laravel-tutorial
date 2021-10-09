@@ -25,7 +25,7 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->title,
             'body' => $this->faker->paragraph,
-            'create_at' => now()
+            'created_at' => now()
         ];
     }
 }
