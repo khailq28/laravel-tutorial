@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,3 +76,6 @@ Route::get('/namedRoute', [ProductsController::class, 'namedRoute'])->name('prod
 // add view
 Route::get('/', [PagesController::class, 'index']);
 Route::get('/about', [PagesController::class, 'about']);
+
+// Posts endpoint
+Route::get('/posts', [PostsController::class, 'index']);
