@@ -54,18 +54,40 @@ class CarsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateValidationRequest $request)
+    public function store(Request $request)
     {
+        
+        // Methods we can use on $request
+        // guessExtension()
+        // getMimeType()
+        // store()
+        // asStore()
+        // storePublicly()
+        // move()
+        // getClientOriginalName()
+        // getClientMimeType()
+        // getClientExtension()
+        // getSize()
+        // getError()
+        // isValid)
+        // $test = $request->file('image')->guessExtension();
+        // dd($test);
+        
         // If it's valid, it will proceed
         // Else throw ValidationException
-        // $request->validate([
-        //     // 'name' => 'required|unique:cars',
-        //     'name' => new Uppercase,
-        //     'founded' => 'required|integer|min:0|max:2021',
-        //     'description' => 'required',
-        // ]);
+        $request->validate([
+            'name' => 'required|unique:cars',
+            'image' => 'required|mimes:jpg, png, jpeg|max:5048',
+            // 'name' => new Uppercase,
+            'founded' => 'required|integer|min:0|max:2021',
+            'description' => 'required',
+        ]);
 
-        $request->validated();
+        $newImageName = time() . '_' . $request->name . '_' . $request->image->extension();
+
+        $request->image->move(public_path('images'), $newImageName);
+
+        // $request->validated();
 
         // $car = new Car;
         // $car->name = $request->input('name');
@@ -77,6 +99,7 @@ class CarsController extends Controller
             'name' => $request->input('name'),
             'founded' => $request->input('founded'),
             'description' => $request->input('description'),
+            'image_path' => $newImageName
         ]);
 
         return redirect('/cars');
