@@ -47,8 +47,17 @@
                     </td>
                 </tr>
             @empty
-                
+                <p>not found</p>
             @endforelse
         </table>
+
+        <p>
+            Product types:
+            @forelse ($car->products as $product)
+                {{ $product->name }}
+            @empty
+                <p>No car product description</p>
+            @endforelse
+        </p>
     </div>
 @endsection
