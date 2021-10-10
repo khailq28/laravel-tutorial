@@ -16,6 +16,8 @@ class CarsController extends Controller
     {
         // SELECT * FROM cars
         $cars = Car::all();
+        // $cars = Car::all()->toJson();
+        // $cars = json_decode($cars);
 
         // $cars = Car::where('name', '=', 'Audi')->get();
 
@@ -24,6 +26,9 @@ class CarsController extends Controller
         //         print_r($car);
         //     }
         // });
+
+        $cars2 = Car::all()->toArray();
+        var_dump($cars2);
 
         return view('cars.index', [
             'cars' => $cars
