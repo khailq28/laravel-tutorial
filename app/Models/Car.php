@@ -15,7 +15,7 @@ class Car extends Model
 
     public $timestamps = true;
     
-    protected $fillable = ['name', 'founded', 'description', 'image_path'];   
+    protected $fillable = ['name', 'founded', 'description', 'image_path', 'user_id'];   
 
     protected $hidden = ['update_at']; //an khi dung var_dump
 

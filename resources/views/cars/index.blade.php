@@ -8,35 +8,44 @@
             </h1>
         </div>
 
-        <div class="pt-10">
-            <a href="/cars/create">Add new car</a>
-        </div>
+        @if (Auth::user())
+            <div class="pt-10">
+                <a href="/cars/create">Add new car</a>
+            </div>
+        @else
+            <div class="pt-10">
+                Please login to add new car
+            </div>
+        @endif
         <hr>
 
         <div class="w-5/6 py-10">
             @foreach ($cars as $car)
             <div class="m-auto">
-                <div><a href="/cars/{{ $car->id }}/edit">edit car</a></div>
-                <span class="uppercase text-blue-500 font-bold text-xs italic">
-                    Founded: {{ $car->founded }}
-                </span>
+                @if (isset(Auth::user()->id) && Auth::user()->id == $car->user_id)
+                    <div><a href="/cars/{{ $car->id }}/edit">edit car</a></div>
+                    <span class="uppercase text-blue-500 font-bold text-xs italic">
+                        Founded: {{ $car->founded }}
+                    </span>
 
-                <h2 class="text-gray-700 text-5xl">
-                    <a href="/cars/{{ $car->id }}">{{ $car->name }}</a>
-                </h2>
+                    <h2 class="text-gray-700 text-5xl">
+                        <a href="/cars/{{ $car->id }}">{{ $car->name }}</a>
+                    </h2>
 
-                <p class="text-lg text-gray-700 py-6">
-                    {{ $car->description }}
-                </p>
+                    <p class="text-lg text-gray-700 py-6">
+                        {{ $car->description }}
+                    </p>
 
-                <form action="/cars/{{ $car->id }}" method="POST">
-                    @csrf
-                    @method('delete')
-                    <button type="submit">Delete</button>
-                </form>
+                    <form action="/cars/{{ $car->id }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit">Delete</button>
+                    </form>
 
-                <hr class="mt-4 mb-8">
-            </div>
+                    <hr class="mt-4 mb-8">
+                </div>
+                @endif
+                
             @endforeach
         </div>
     </div>
