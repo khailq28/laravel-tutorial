@@ -20,4 +20,8 @@ class Car extends Model
     protected $hidden = ['update_at']; //an khi dung var_dump
 
     protected $visible = ['name', 'founded', 'description'];
+
+    public function carmodels() {
+        return $this->hasMany(CarModel::class);
+    }
 }
