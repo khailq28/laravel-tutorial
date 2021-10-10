@@ -23,5 +23,32 @@
                 <li>{{ $model['model_name'] }}</li>
             @endforeach
         </ul>
+
+        <table class="table-auto">
+            <tr>
+                <th class="w-1/2">Model</th>
+                <th class="w-1/2">Engine</th>
+                <th class="w-1/2">Date</th>
+            </tr>
+
+            @forelse ($car->carmodels as $model)
+                <tr>
+                    <td class="border-4">{{ $model->model_name }}</td>
+                    <td class="border-4">
+                        @foreach ($car->engines as $engine)
+                            @if($model->id == $engine->model_id)
+                                {{ $engine->engine_name }}
+                            @endif
+                        @endforeach
+                    </td>
+
+                    <td>
+                        {{ date('d-m-Y', strtotime($car->productionDate->create_at)) }}
+                    </td>
+                </tr>
+            @empty
+                
+            @endforelse
+        </table>
     </div>
 @endsection
